@@ -9,5 +9,4 @@ from .views import index
 urlpatterns = [
     # path(路由, 视图函数名)
     path('index/', index)
-
 ]
