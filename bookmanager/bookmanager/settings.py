@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 注册子应用
-    'book'    # 方案一
-    # 'bookmanager.apps.BookConfig'    # 方案二
+    # 如果对apps中的内容进行了修改，则需要使用方案二，否则其修改不会生效
+    # 'book'    # 方案一
+    'book.apps.BookConfig'    # 方案二
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# 指定访问静态资源的路由
 STATIC_URL = '/static/'
+
+# 告知系统静态文件路径
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
