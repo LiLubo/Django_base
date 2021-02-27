@@ -9,6 +9,10 @@ def index(request):
     # 在这里实现增删改查
     return HttpResponse(BookInfo.objects.all())
 
+# mysql的数据存储在硬盘
+# Redis的数据存储在内存
+# 硬盘的数据保存在内存也称为缓存
+
 
 """ 增加数据 """
 # 方式1:
