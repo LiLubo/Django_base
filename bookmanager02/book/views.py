@@ -135,6 +135,16 @@ BookInfo.objects.filter(Q(readcount__gt=20) | Q(id__lt=3))
 BookInfo.objects.filter(~Q(id=3))
 
 
+""" 聚合函数 """
+from django.db.models import Sum, Max, Min, Avg, Count
+# 模型类名.objects.aggregate(xxx('字段名'))
+# 求阅读量之和
+BookInfo.objects.aggregate(Sum('readcount'))
+
+""" 排序 """
+# 根据阅读量进行排序
+BookInfo.objects.all().order_by('readcount')
+
 
 
 
