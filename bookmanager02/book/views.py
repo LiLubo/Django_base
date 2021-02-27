@@ -146,6 +146,31 @@ BookInfo.objects.aggregate(Sum('readcount'))
 BookInfo.objects.all().order_by('readcount')
 
 
+""" 两个表的级联操作 """
+# 关联查询
+# 查询书籍为1的所有人物信息
+book = BookInfo.objects.get(id=1)
+book.peopleinfo_set.all()
+
+# 查询人物为1的书籍信息
+person = PeopleInfo.objects.get(id=1)
+# 此处person.book也是一个书籍对象 同样可以调用书籍中的方法和属性
+print(person.book.name)
+
+# 关联过滤查询
+# 语法形式: 模型类名.objects.filter(关联模型类名（小写）__字段名__运算符=值)
+# 查询图书 要求图书人物为'郭靖'
+BookInfo.objects.filter(peopleinfo__name='郭靖')
+
+# 查询图书 要求图书人物的描述包含'八'
+BookInfo.objects.filter(peopleinfo__description__contains='八')
+
+# 查询书名为'天龙八部'的所以人物信息
+PeopleInfo.objects.filter(book__name='天龙八部')
+
+# 查询图书阅读量大于30的所有人物
+PeopleInfo.objects.filter(book__readcount__gt=30)
+
 
 
 

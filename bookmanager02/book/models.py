@@ -31,6 +31,9 @@ class BookInfo(models.Model):
     commentcount = models.IntegerField(default=0)
     is_delete = models.BooleanField(default=False)
 
+    # 在一对多的关系模型中 系统会自动添加一个 关联模型类名（小写）_set的字段
+    # peopleinfo_set = [PeopleInfo对象, PeopleInfo对象......]
+    #
     def __str__(self):
 
         return self.name
