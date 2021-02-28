@@ -66,6 +66,11 @@ def json(request):
     body_dict = json.loads(body_str)
     print(body_dict)
     # {'name': 'lubo', 'age': 18}
-    
+
+    # 打印请求头
+    # print(request.META)
+    print(request.META['SERVER_PORT'])
+    # 8000
     return HttpResponse('json')
+
 
