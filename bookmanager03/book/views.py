@@ -74,3 +74,10 @@ def json(request):
     return HttpResponse('json')
 
 
+def method(request):
+
+    print(request.method)
+
+    return HttpResponse('method')
+
+

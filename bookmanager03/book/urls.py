@@ -10,5 +10,7 @@ urlpatterns = [
 
     path('register/', register),
 
-    path('json/', json)
+    path('json/', json),
+
+    path('method/', method),
 ]
