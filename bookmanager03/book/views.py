@@ -38,5 +38,10 @@ def shop(request, city_id, shop_id):
     return HttpResponse('禄波的小商店')
 
 
+def register(request):
 
+    # 获取表单数据
+    data = request.POST
+    print(data)
+    return HttpResponse('register')
 
