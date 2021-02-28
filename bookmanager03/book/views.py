@@ -14,7 +14,13 @@ def create_book(request):
     return HttpResponse('create')
 
 
-def shop(request, city_id, shop_id):
+def shop(request, city_id, mobile):
+
+    # # 验证参数的正确性
+    # import re
+    # if not re.match('\d{5}', shop_id):
+    #     return HttpResponse('商店不存在')
+
     """
     查询字符串
     http://ip:port/path/path/?key=value&key1=value
@@ -26,15 +32,16 @@ def shop(request, city_id, shop_id):
     # 获取查询字符串
     # <QueryDict: {'order': ['lalala']}>
     # QueryDict具有字典的特性 且可以一键多值
-    query_parms = request.GET
-    print(query_parms)
-
-    # 当一键多值时，获取键值需要使用getlist(),否则只能得到最后一个键值
-    order = query_parms.getlist('order')
-
-    # order = query_parms.get('order')
-    # order = query_parms['order']
-    print(order)
+    # query_parms = request.GET
+    # print(query_parms)
+    #
+    # # 当一键多值时，获取键值需要使用getlist(),否则只能得到最后一个键值
+    # order = query_parms.getlist('order')
+    #
+    # # order = query_parms.get('order')
+    # # order = query_parms['order']
+    # print(order)
+    print(city_id, mobile)
     return HttpResponse('禄波的小商店')
 
 
