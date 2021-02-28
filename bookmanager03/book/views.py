@@ -45,3 +45,27 @@ def register(request):
     print(data)
     return HttpResponse('register')
 
+
+def json(request):
+
+    # json 数据不能通过 request.POST 获取
+    body = request.body
+    print(body)
+    # b'{\r\n    "name": "lubo",\r\n    "age": 18\r\n}'
+
+    body_str = body.decode()
+    print(body_str)
+    # <class 'str'>
+    # {
+    #     "name": "lubo",
+    #     "age": 18
+    # }
+
+    # JSON形式的字符串可以转换成字典
+    import json
+    body_dict = json.loads(body_str)
+    print(body_dict)
+    # {'name': 'lubo', 'age': 18}
+    
+    return HttpResponse('json')
+
