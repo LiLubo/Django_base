@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, redirect
 from book.models import BookInfo
 # Create your views here.
 
@@ -87,4 +87,65 @@ def method(request):
 
     return HttpResponse('method')
 
+
+from django.http import JsonResponse
+
+
+def response(request):
+
+    # HttpResponse的三个参数
+    # content 响应体
+    # content_type 响应体的数据类型
+    # status 状态码(100-599)
+    # 1xx
+    # 2xx
+    #   200 成功
+    # 3xx
+    # 4xx 请求有问题
+    #   404 找不到页面 路由有问题
+    #   403 禁止访问 权限有问题
+    # 5xx
+    # return HttpResponse('response', status=200)
+
+    # 设置响应头
+    # res = HttpResponse('response', status=200)
+    #
+    # res['name'] = 'lubo'
+    #
+    # return res
+
+    # jsonResponse
+    # 先导包
+    # Json <--> dict
+    info = {    # 字典
+        'name': 'lubo',
+        'gender': True,
+    }
+    friend = [  # 列表
+        {
+            'name': '小花',
+            'mobile': 121341141,
+        },
+        {
+            'name': '小草',
+            'mobile': 1231435,
+        }
+    ]
+    # data 是返回的响应数据，一般是字典类型
+    # safe=True 表示data传的是字典数据
+    # JsonResponse 可以把字典类型的数据转换成Json类型
+    # safe=False 表示data传的不是字典数据
+
+    # res = JsonResponse(data=friend, safe=False, charset='utf-8')
+    # return res
+
+    # json.loads json字符串转换成字典
+    # json.dumps 字典转换成json字符串
+    # import json
+    # data = json.dumps(friend)
+    # res = HttpResponse(data)
+    # return res
+
+    # 重定向
+    return redirect('http://www.baidu.com')
 

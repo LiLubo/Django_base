@@ -31,10 +31,8 @@ urlpatterns = [
     # <转换器名字:变量名>
     # 转换器会对变量数据进行正则的验证
     path('<int:city_id>/<phone:mobile>/', shop),
-
     path('register/', register),
-
     path('json/', json),
-
     path('method/', method),
+    path('response/', response),
 ]
