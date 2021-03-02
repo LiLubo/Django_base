@@ -35,4 +35,6 @@ urlpatterns = [
     path('json/', json),
     path('method/', method),
     path('response/', response),
+    path('set_cookie/', set_cookie),
+    path('get_cookie/', get_cookie),
 ]

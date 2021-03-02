@@ -149,3 +149,45 @@ def response(request):
     # 重定向
     return redirect('http://www.baidu.com')
 
+
+'''
+第一次请求，携带查询字符串
+http://127.0.0.1:8000/set_cookie/?username=lubo&password=1234567
+服务器接收到请求之后，获取username,设置cookie信息，cookie信息包括username
+浏览器接收到服务器的响应之后应该把cookie保存起来
+
+第二次 及其之后的请求，在访问http://127.0.0.1:8000这个域名的时候都会携带cookie信息
+服务器就可以读取cookie信息，从而判断用户的身份
+'''
+
+
+def set_cookie(request):
+
+    # 1.获取查询字符串数据
+    username = request.GET.get('username')
+    password = request.GET.get('password')
+
+    # 2.服务器设置cookie信息
+    # 响应对象.set_cookie(参数1，参数2，参数3)
+    # 参数1：key   参数2：value(只能是字符串)   参数3：cookie过期时间（秒数）
+    res = HttpResponse('set_cookie')
+    # 默认过期时间为当前会话结束时，即浏览器关闭
+    res.set_cookie('name', username, max_age=3600)
+
+    res.set_cookie('password', password)
+
+    # 删除cookie
+    res.delete_cookie('password')
+    
+    return res
+
+
+def get_cookie(request):
+
+    # 获取cookie
+    print(request.COOKIES)
+    # {'name': 'lubo'}
+    name = request.COOKIES.get('name')
+    password = request.COOKIES.get('password')
+
+    return HttpResponse((name, password))
