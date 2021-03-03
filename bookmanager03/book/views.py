@@ -178,7 +178,7 @@ def set_cookie(request):
 
     # 删除cookie
     res.delete_cookie('password')
-    
+
     return res
 
 
@@ -191,3 +191,47 @@ def get_cookie(request):
     password = request.COOKIES.get('password')
 
     return HttpResponse((name, password))
+
+
+"""
+Session(保存在服务端,依赖于cookie)
+第一次请求 http://127.0.0.1:8000/set_session/?username=lubo 
+服务器端设置session信息 
+服务器同时会生成一个sessionid的信息
+浏览器接收到这个信息之后，会把cookie数据保存起来
+
+2.第二次及其之后的请求，都会携带这个sessionid，服务器会验证sessionid，没有问题则会读取相应的数据实现业务逻辑
+"""
+
+
+def set_session(request):
+
+    # 1.获取用户信息
+    username = request.GET.get('username')
+
+    # 2.设置session信息
+    # 假如通过模型查询获取到了用户的信息
+    user_id = 1
+    request.session['user_id'] = user_id
+    request.session['username'] = username
+
+    # clear 删除session中的数据 但是保留key
+    # request.session.clear()
+
+    # flash 删除session中的数据 都不保留
+    # request.session.flush()
+
+    # 设置session有效期
+    request.session.set_expiry(100)
+    
+    return HttpResponse('set_session')
+
+
+def get_session(request):
+
+    user_id = request.session.get('user_id')
+    username = request.session.get('username')
+
+    content = '{}, {}'.format(user_id, username)
+    return HttpResponse(content)
+
