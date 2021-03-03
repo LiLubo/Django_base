@@ -38,5 +38,9 @@ urlpatterns = [
     path('set_cookie/', set_cookie),
     path('get_cookie/', get_cookie),
     path('set_session/', set_session),
-    path('get_session/', get_session)
+    path('get_session/', get_session),
+    path('login/', login),
+
+    # 类视图
+    path('xxxlogin/', LoginView.as_view())
 ]

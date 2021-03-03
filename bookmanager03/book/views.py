@@ -223,7 +223,7 @@ def set_session(request):
 
     # 设置session有效期
     request.session.set_expiry(100)
-    
+
     return HttpResponse('set_session')
 
 
@@ -234,4 +234,52 @@ def get_session(request):
 
     content = '{}, {}'.format(user_id, username)
     return HttpResponse(content)
+
+
+''' 类视图 '''
+
+
+# 一个函数处理两种逻辑
+def login(request):
+    print(request.method)
+
+    if request.method == 'GET':
+
+        return HttpResponse('get 逻辑')
+
+    elif request.method == 'POST':
+
+        return HttpResponse('post 逻辑')
+
+    return HttpResponse('login')
+
+
+''' 
+类视图的定义
+1.继承自View
+2.类视图中的方法是通过http方法小写来区分不同的请求方式
+class 类视图名字(View):
+    def get(self, request):
+    
+        return HttpResponse('xxx')
+        
+    def http_method_lower(self, request):
+    
+        return HttpResponse('xxx')
+
+'''
+from django.views import View
+
+
+class LoginView(View):
+
+    def get(self, request):
+
+        return HttpResponse('get')
+
+    def post(self, request):
+
+        return HttpResponse('post')
+
+
 
