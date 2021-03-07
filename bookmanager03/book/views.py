@@ -258,6 +258,7 @@ def login(request):
 类视图的定义
 1.继承自View
 2.类视图中的方法是通过http方法小写来区分不同的请求方式
+from django.views import View
 class 类视图名字(View):
     def get(self, request):
     
@@ -282,4 +283,37 @@ class LoginView(View):
         return HttpResponse('post')
 
 
+"""
+打开我的订单/个人中心页面
+已经登录 则正常访问
+如果未登录 则跳转到登录界面
 
+定义我的订单类视图
+判断用户是否已经登录
+    ·标识符实现
+    ·多继承实现
+        ·LoginRequiredMixin 
+            ·导包：from django.contrib.auth.mixins import LoginRequiredMixin
+            ·该类的内部会进行用户是否登录(admin站点)的判断
+            如登录成功则会打开相应页面，否则会跳转到系统的 accounts/login/?next=/order/ 页面中
+"""
+
+# LoginRequiredMixin 作用是实现只有已登录的用户才能访问订单页面
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+# 注意此处需要先继承LoginRequiredMixin
+class OrderView(LoginRequiredMixin, View):
+
+    def get(self, request):
+
+        # # 登录标识符
+        # is_login = False
+        #
+        # if not is_login:
+        #     return HttpResponse('请登录,跳转至登录界面')
+
+        return HttpResponse('GET 我的订单页面，需登录才能使用')
+
+    def post(self, request):
+        return HttpResponse('POST 我的订单页面，需登录才能使用')
