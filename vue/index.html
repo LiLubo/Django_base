@@ -10,6 +10,26 @@
 	[[message]]
 	<hr>
 	<a V-bind:href='next'>点我点我！！</a>
+	<hr>
+	<a href="#" V-if='isLogin'>个人中心</a>
+	<a href="#" V-else-if>登录页面</a>
+
+	<hr>
+	<!--
+		==  数值的比较
+		=== 数值及类型的比较
+	-->
+	<a href="#" v-if='level===1'>大师</a>
+	<a href="#" v-else-if='level===2'>高徒</a>
+	<a href="#" v-else-if='level===3'>低徒</a>
+	<a href="#" style="text-decoration-line: none" v-else-if='level===4'>凡夫</a>
+	<a href="#" v-else>俗子</a>
+
+	<hr>
+	<!-- span 填写文本信息 -->
+	<span v-if='seen'>if</span>
+	<span v-show='seen'>show</span>
+
 </div>
 
 </body>
@@ -19,7 +39,11 @@
 		delimiters: ['[[', ']]'],	// delimiters 分隔符[开始的分隔符, 结束的分隔符]
 		data: {
 			message: 'hello',
-			next: 'https://www.baidu.com'
+			next: 'https://www.baidu.com',
+			isLogin: true,
+			level: 2,
+			seen: false,
+
 		}
 	})
 </script>
