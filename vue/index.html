@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	</title>
+	<!-- head 在这里导入vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id='app'> 
+	[[message]]
+	<hr>
+	<a V-bind:href='next'>点我点我！！</a>
+</div>
+
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el: '#app',
+		delimiters: ['[[', ']]'],	// delimiters 分隔符[开始的分隔符, 结束的分隔符]
+		data: {
+			message: 'hello',
+			next: 'https://www.baidu.com'
+		}
+	})
+</script>
+</html>
