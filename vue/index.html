@@ -26,9 +26,36 @@
 	<a href="#" v-else>俗子</a>
 
 	<hr>
-	<!-- span 填写文本信息 -->
+	<!-- 
+	span  
+	style='display: none' 存在但不显示 
+	v-show  无论变量的值是false还是true都存在
+	v-if 变量的值为false时不存在
+	-->
 	<span v-if='seen'>if</span>
 	<span v-show='seen'>show</span>
+
+	<hr>
+	<ul>
+		<!-- v-for='变量名 in 列表变量名' -->
+		<li v-for='shop in shops'>[[shop]]</li>
+		
+		<br>
+		<!-- v-for='(列表元素， 索引）in 列表变量' -->
+		<li v-for='(shop, index) in shops'>NO.[[index+1]] [[shop]]</li>
+
+		<br>
+		<!-- v-for='变量名 in 字典名' 获取value -->
+		<li v-for='value in object'>[[value]]</li>
+
+		<br>
+		<!-- v-for='(变量名, key) in 字典名' -->
+		<li v-for='(value, key) in object'>[[key]]: [[value]]</li>
+
+
+
+	</ul>
+
 
 </div>
 
@@ -42,8 +69,13 @@
 			next: 'https://www.baidu.com',
 			isLogin: true,
 			level: 2,
-			seen: false,
-
+			seen: true,
+			shops: ['北京', '广州', '上海', '深圳'],
+			object: {
+      			title: 'How to do lists in Vue',
+      			author: 'Jane Doe',
+      			publishedAt: '2016-04-10'
+    		}
 		}
 	})
 </script>
