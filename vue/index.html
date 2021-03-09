@@ -49,12 +49,18 @@
 		<li v-for='value in object'>[[value]]</li>
 
 		<br>
-		<!-- v-for='(变量名, key) in 字典名' -->
+		<!-- v-for='(value, key) in 字典名' -->
 		<li v-for='(value, key) in object'>[[key]]: [[value]]</li>
-
-
-
 	</ul>
+
+	<hr>
+	
+	<button v-on:click='counter+=1'>Add 1</button>
+	<span>this is result [[counter]]</span>
+
+	<button v-on:click='login'>注册</button>
+	<!-- v-on: 简写@ -->
+	<button @click='sayName("ali")'> sayName </button>
 
 
 </div>
@@ -75,7 +81,17 @@
       			title: 'How to do lists in Vue',
       			author: 'Jane Doe',
       			publishedAt: '2016-04-10'
-    		}
+    		},
+			counter: 1,
+		},
+		// 函数定义
+		methods: {
+			login: function(){
+				alert('登录中')
+			},
+			sayName: function(name){
+				alert(name)
+			}
 		}
 	})
 </script>
