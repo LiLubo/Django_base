@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!--  
+		1.导入 vue.js
+		2.定义标签来接管标签中的内容
+		3.创建vue实例 让vue实例获取html
+	-->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 这里编写html相关的内容 -->
+		<!-- {{}} 语法形式:胡子语法 {{变量名}} -->
+		{{message}}
+		<a href="#">{{info}}</a>
+	</div>
+
+</body>
+<script type="text/javascript">
+	/*
+		var app 定义一个变量
+		new Vue() 实例化对象
+		el: '#app' 相当于 js document.getElemetById('app')	获取div标签
+		data 变量
+	*/
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: 'hello vue',
+			info: '请登录',
+		}
+	})
+</script>
+</html>
