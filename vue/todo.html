@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id='app'>
+    <!-- {{message}} -->
+    <input type="text" name="" v-model='item'>
+    <button @click='addTodo'>添加</button>
+    <hr> 
+    <ul>
+        <li v-for='(todo, index) in todos'>
+            {{todo}}
+            <button @click='delete_info(index)' style="color: red;">✖</button>
+        </li>
+    </ul>
+
+</div>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            todos: ['vue', 'django', 'flask'],
+            item: '',
+        },
+        methods: {
+            addTodo: function(){
+                alert(this.item),
+
+                // 添加到列表中
+                this.todos.push(this.item)
+
+                // 输入框清空
+                this.item=''
+            },
+            delete_info: function(index){
+                // 根据下标删除数组中的某个或某些元素
+                this.todos.splice(index, 1)
+            }
+        }
+    })
+</script>
+    
+</body>
+</html>
